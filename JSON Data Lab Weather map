@@ -1,0 +1,43 @@
+let weatherData; 
+
+function preload() {
+  let url = "https://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q=New York";
+  weatherData = loadJSON(url);
+}
+
+function setup() {
+  createCanvas(600, 400);
+  textAlign(CENTER, CENTER);
+}
+
+function draw() {
+  background(220);
+
+  if (weatherData) {
+    let temp = weatherData.current.temp_c; 
+    let condition = weatherData.current.condition.text; 
+    
+   
+    textSize(32);
+    fill(50);
+    text("Current Temperature: " + temp + "°C", width / 2, height / 3);
+
+   
+    textSize(24);
+    text("Condition: " + condition, width / 2, height / 2);
+    
+  
+    if (temp < 10) {
+      background(100, 150, 255); 
+    } else if (temp < 25) {
+      background(200, 200, 100);
+    } else {
+      background(255, 100, 100); 
+    }
+  } else {
+    text("Loading weather data...", width / 2, height / 2);
+  }
+}
+
+WeatherAPI key:"https://api.weatherapi.com/v1/current.json?key=123456abcdef&q=New York";
+
